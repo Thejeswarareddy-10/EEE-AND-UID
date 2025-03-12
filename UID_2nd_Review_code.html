@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .dashboard-heading {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-container button {
+            width: 48%;
+        }
+        .back-button, .logout-button {
+            background-color: #f44336;
+            margin-top: 10px;
+        }
+        .back-button:hover, .logout-button:hover {
+            background-color: #d32f2f;
+        }
+        .message-screen {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+        #hammerEffect {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Login Container -->
+<div class="container" id="loginContainer">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <div id="errorMessage" class="error-message hidden">Please check your username and password</div>
+</div>
+
+<!-- Dashboard -->
+<div class="container hidden" id="dashboard">
+    <div >Peltier-Based Thermoelectric Cooler using PWM Controller</div>
+    <div class="button-container">
+        <button onclick="openPPT()">Project PPT</button>
+        <button onclick="showMessage()">Temperature Reading</button>
+    </div>
+    <button class="logout-button" onclick="logout()">Logout</button>
+</div>
+
+<!-- Message Screen -->
+<div class="message-screen hidden" id="messageScreen">
+    <div id="hammerEffect">
+        This webpage is available soon
+    </div>
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
+
+<script>
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+
+        if (username === 'Teju' && password === '1021') {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+        } else {
+            errorMessage.classList.remove('hidden');
+        }
+    }
+
+    function logout() {
+        document.getElementById('dashboard').classList.add('hidden');
+        document.getElementById('loginContainer').classList.remove('hidden');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    }
+
+    function openPPT() {
+    const filePath = 'open.bat';
+    window.location.href = filePath;
+}
+
+
+    function showMessage() {
+        document.getElementById('dashboard').classList.add('hidden');
+        document.getElementById('messageScreen').classList.remove('hidden');
+    }
+
+    function goBack() {
+        document.getElementById('messageScreen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
